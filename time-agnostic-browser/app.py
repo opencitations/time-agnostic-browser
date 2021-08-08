@@ -6,15 +6,16 @@ from rdflib.plugins.sparql.processor import prepareQuery
 from dateutil import parser
 
 from time_agnostic_library.agnostic_entity import AgnosticEntity
-from time_agnostic_library.agnostic_query import BlazegraphQuery, CONFIG_PATH
+from time_agnostic_library.agnostic_query import BlazegraphQuery
 from time_agnostic_library.support import _to_dict_of_nt_sorted_lists
 
-CONFIG_PATH = "./tab_interface/config.json"
+CONFIG_BROWSER = "time-agnostic-browser/config_browser.json"
+CONFIG_LIBRARY= "time-agnostic-browser/config_library.json"
 
 app = Flask(__name__)
 app.secret_key = b'\x94R\x06?\xa4!+\xaa\xae\xb2\xf3Z\xb4\xb7\xab\xf8'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-with open(CONFIG_PATH, encoding="utf8") as json_file:
+with open(CONFIG_BROWSER, encoding="utf8") as json_file:
     config = json.load(json_file)
 
 rules:Dict[str, Dict] = config["rules_on_properties_order"]
@@ -100,7 +101,7 @@ def entity(res):
 @app.route("/query", methods = ['POST'])
 def query():
     query = request.form.get("query")
-    agnostic_query = BlazegraphQuery(query)
+    agnostic_query = BlazegraphQuery(query, config_path=CONFIG_LIBRARY)
     agnostic_results = agnostic_query.run_agnostic_query()
     variables = prepareQuery(query).algebra["PV"]
     agnostic_results = sort_by_time(agnostic_results)

@@ -6,7 +6,7 @@ from rdflib.plugins.sparql.processor import prepareQuery
 from dateutil import parser
 
 from time_agnostic_library.agnostic_entity import AgnosticEntity
-from time_agnostic_library.agnostic_query import BlazegraphQuery
+from time_agnostic_library.agnostic_query import VersionQuery
 from time_agnostic_library.support import _to_dict_of_nt_sorted_lists
 
 CONFIG_BROWSER = "time-agnostic-browser/config_browser.json"
@@ -84,7 +84,7 @@ def home():
 
 @app.route("/entity/<path:res>")
 def entity(res):
-    agnostic_entity = AgnosticEntity(res=res, related_entities_history=False)
+    agnostic_entity = AgnosticEntity(res=res, related_entities_history=False, config_path=CONFIG_LIBRARY)
     try:
         history = agnostic_entity.get_history(include_prov_metadata=True)
     except urllib.error.URLError:
@@ -101,7 +101,7 @@ def entity(res):
 @app.route("/query", methods = ['POST'])
 def query():
     query = request.form.get("query")
-    agnostic_query = BlazegraphQuery(query, config_path=CONFIG_LIBRARY)
+    agnostic_query = VersionQuery(query, config_path=CONFIG_LIBRARY)
     agnostic_results = agnostic_query.run_agnostic_query()
     variables = prepareQuery(query).algebra["PV"]
     agnostic_results = sort_by_time(agnostic_results)

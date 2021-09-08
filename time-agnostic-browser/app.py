@@ -67,15 +67,15 @@ def get_prov_metadata_by_time(prov_metadata:Dict[str, Dict]) -> Dict[str, Dict]:
     for entity, snapshots in prov_metadata.items():
         for _, metadata in snapshots.items():
             prov_metadata_by_time.setdefault(entity, dict())
-            time = get_human_readable_date(metadata["http://www.w3.org/ns/prov#generatedAtTime"])
-            responsible_agent = metadata["http://www.w3.org/ns/prov#wasAttributedTo"]
-            source = metadata["http://www.w3.org/ns/prov#hadPrimarySource"]
-            description = metadata["http://purl.org/dc/terms/description"]
+            time = get_human_readable_date(metadata["generatedAtTime"])
+            responsible_agent = metadata["wasAttributedTo"]
+            source = metadata["hadPrimarySource"]
+            description = metadata["description"]
             prov_metadata_by_time[entity].setdefault(time, dict())
-            prov_metadata_by_time[entity][time]["http://www.w3.org/ns/prov#generatedAtTime"] = time
-            prov_metadata_by_time[entity][time]["http://www.w3.org/ns/prov#wasAttributedTo"] = responsible_agent
-            prov_metadata_by_time[entity][time]["http://www.w3.org/ns/prov#hadPrimarySource"] = source
-            prov_metadata_by_time[entity][time]["http://purl.org/dc/terms/description"] = description
+            prov_metadata_by_time[entity][time]["generatedAtTime"] = time
+            prov_metadata_by_time[entity][time]["wasAttributedTo"] = responsible_agent
+            prov_metadata_by_time[entity][time]["hadPrimarySource"] = source
+            prov_metadata_by_time[entity][time]["description"] = description
     return prov_metadata_by_time
 
 @app.route("/")

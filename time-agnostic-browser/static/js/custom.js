@@ -32,12 +32,13 @@ function wrapEntitiesInLinks(baseUrls) {
                     Array.from(tripleMember.matchAll(`${baseUrl}\\w+/\\d+`), function(m){
                         shortenedUri = m[0].replace(baseUrl, "")
                         if (tripleMemberElement.hasClass("resName")) {
-                            tripleMemberElement
-                                .html(`<span class="shortenedUri">${shortenedUri}</span>`)
+                            tripleMember = tripleMember
+                            .replace(m, `<span class="shortenedUri">${shortenedUri}</span>`)
                         } else {
-                            tripleMemberElement
-                                .html(`<a href='${m[0]}' title='${m[0]}' class='entity'><span class="shortenedUri">${shortenedUri}</span></a>`)
+                            tripleMember = tripleMember
+                            .replace(m, `<a href='${m}' title='${m}' class='entity'><span class="shortenedUri">${shortenedUri}</span></a>`)
                         }
+                        tripleMemberElement.html(tripleMember)
                     });
                 }
             });
@@ -124,6 +125,7 @@ const App = new Vue({
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 <span class="ml-1">Loading...</span>
             `);
+            $(".sparqlResults .row").empty();
             var query = $("textarea#sparqlEndpoint").val()
             this.$http.post("/query", { "query": query }, { 'emulateJSON': true }).then(function (data) {
                 this.response = data["body"]["response"]
@@ -152,7 +154,7 @@ const App = new Vue({
         }
     },
     updated: function(){
-        $('.middle-line').first().hide();
+        $('.middle-line').first().remove();
     }
 })
 

@@ -114,22 +114,22 @@ The [config_browser.json](https://github.com/opencitations/time-agnostic-browser
 ### Materialization
 In the "Explore" macro-section, a text input accepts a URI. By submitting it, the entire history of the corresponding resource is displayed. Figure 1 provides the entity <id/61956> as an example. Figure 2 shows through a GUI the two existing snapshots of the resource. Its different states are reported in tabular form, while the metadata is found above each table. All the entities are displayed as links, clicking on which the corresponding resource history is reconstructed. In addition, the complexity of the underlying RDF model is hidden, as are the triples: predicate URIs, as well as subjects and objects, appear in a human-readable format.
 
-| ![](https://user-images.githubusercontent.com/42008604/137172818-874972c0-8473-46ff-a311-6bdc5f8e2299.png) | 
+| ![](https://raw.githubusercontent.com/opencitations/time-agnostic-browser/main/docs/img/explore.png) | 
 |:--:| 
 | *Figure 1 Graphical user interface of the “Explore” macro-section.* |
 
-| ![image](https://user-images.githubusercontent.com/42008604/137173931-e54010db-9d75-49f9-af63-a2a7b5837a2f.png) | 
+| ![image](https://raw.githubusercontent.com/opencitations/time-agnostic-browser/main/docs/img/explore_output.png) | 
 |:--:| 
 | *Figure 2 Graphical user interface of an entity history reconstruction.* |
 
 ### Time-traversal query
 In the "Query" macro-section, a text area receives a SPARQL query, which is resolved on all dataset versions. Figure 3 gives an example of a cross-version structured query, whose output is shown in Figure 4. The findings of a query are presented in as many tables as the resulting snapshots. The tables are ordered from the most recent to the least, and the columns can be sorted in ascending and descending order. Finally, suppose at least one base URI has been indicated in the configuration file. In that case, the entities are shown as links, shortcuts to reconstruct the history of the related resources. 
 
-| ![](https://user-images.githubusercontent.com/42008604/137172853-ee3669cd-a00f-4606-bb88-f70ec4ee9302.png) | 
+| ![](https://raw.githubusercontent.com/opencitations/time-agnostic-browser/main/docs/img/query.png) | 
 |:--:| 
 | *Figure 3 Graphical user interface of the “Query” macro-section.* |
 
-| ![image](https://user-images.githubusercontent.com/42008604/137174208-b579fa1c-dff9-4b03-80d5-7daeef8c74c5.png) | 
+| ![](https://raw.githubusercontent.com/opencitations/time-agnostic-browser/main/docs/img/query_output.png) | 
 |:--:| 
 | *Figure 4 Graphical user interface of a time-travel query output.* |
 

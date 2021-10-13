@@ -10,6 +10,8 @@
   * [Configuration files](#configuration-files)
     * [Config library](#config-library)  
     * [Config browser](#config-browser) 
+  * [Materialization](#materialization)
+  * [Time-traversal query](#time-traversal-query)
 
 ## User's guide
 
@@ -129,7 +131,7 @@ In the "Query" macro-section, a text area receives a SPARQL query, which is reso
 
 | ![image](https://user-images.githubusercontent.com/42008604/137174208-b579fa1c-dff9-4b03-80d5-7daeef8c74c5.png) | 
 |:--:| 
-| *Graphical user interface of a time-travel query output.* |
+| *Figure 4 Graphical user interface of a time-travel query output.* |
 
 
 

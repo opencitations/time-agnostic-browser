@@ -38,7 +38,7 @@
                         <div class="tab-content" id="tabcontent2">
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                 <label for="searchByURI">Enter a URI to begin navigation</label>
-                                <input type="text" class="form-control" id="searchByURI" aria-describedby="searchByURI" value=https://github.com/arcangelo7/time_agnostic/ar/15519> 
+                                <input type="text" class="form-control" id="searchByURI" aria-describedby="searchByURI" value=https://github.com/opencitations/time-agnostic-library/ar/15519> 
                                 <button id="exploreSubmit" class="btn btn-outline-primary m-5 align-self-end">
                                     <span class="mr-1"><span class="fas fa-search"></span></span>
                                     Submit the query
@@ -55,8 +55,8 @@
     PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
     SELECT DISTINCT ?o ?id ?value
     WHERE {
-        &lt;https://github.com/arcangelo7/time_agnostic/ar/15519&gt; pro:isHeldBy ?o.
-        OPTIONAL {&lt;https://github.com/arcangelo7/time_agnostic/ar/15519&gt; rdf:type pro:RoleInTime.}
+        &lt;https://github.com/opencitations/time-agnostic-library/ar/15519&gt; pro:isHeldBy ?o.
+        OPTIONAL {&lt;https://github.com/opencitations/time-agnostic-library/ar/15519&gt; rdf:type pro:RoleInTime.}
         ?o datacite:hasIdentifier ?id.
         OPTIONAL {?id literal:hasLiteralValue ?value.}
     }

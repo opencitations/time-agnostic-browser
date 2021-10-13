@@ -1,5 +1,5 @@
 {
-    "base_urls": ["https://github.com/arcangelo7/time_agnostic/"],
+    "base_urls": ["https://github.com/opencitations/time-agnostic-library/"],
     "rules_on_properties_order": {
         "http://purl.org/spar/datacite/Identifier": {
             "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0,

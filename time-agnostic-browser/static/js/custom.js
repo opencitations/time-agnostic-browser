@@ -121,11 +121,11 @@ const App = new Vue({
     },
     methods: {
         submitQuery() {
+            this.response = []
             $("#querySubmit").html(`
                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                 <span class="ml-1">Loading...</span>
             `);
-            $(".sparqlResults .row").empty();
             var query = $("textarea#sparqlEndpoint").val()
             this.$http.post("/query", { "query": query }, { 'emulateJSON': true }).then(function (data) {
                 this.response = data["body"]["response"]

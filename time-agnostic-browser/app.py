@@ -4,21 +4,32 @@ import urllib, json
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
 from rdflib.plugins.sparql.processor import prepareQuery
 from dateutil import parser
+from subprocess import Popen
 
 from time_agnostic_library.agnostic_entity import AgnosticEntity
 from time_agnostic_library.agnostic_query import VersionQuery
 from time_agnostic_library.support import _to_dict_of_nt_sorted_lists
 
-CONFIG_BROWSER = "time-agnostic-browser/config_browser.json"
-CONFIG_LIBRARY= "time-agnostic-browser/config_library.json"
+CONFIG_BROWSER = "config_browser.json"
+CONFIG_LIBRARY= "config_library.json"
 
 app = Flask(__name__)
 app.secret_key = b'\x94R\x06?\xa4!+\xaa\xae\xb2\xf3Z\xb4\xb7\xab\xf8'
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 with open(CONFIG_BROWSER, encoding="utf8") as json_file:
     config = json.load(json_file)
+with open(CONFIG_LIBRARY, encoding="utf8") as json_file:
+    config_lib = json.load(json_file)
 
 rules:Dict[str, Dict] = config["rules_on_properties_order"]
+
+def launch_blazegraph(ts_dir:str, port:int):
+    """
+    Launch Blazegraph triplestore at a given port.
+    """
+    Popen(
+        ["java", "-server", "-Xmx4g", F"-Dcom.bigdata.journal.AbstractJournal.file={ts_dir}/blazegraph.jnl",f"-Djetty.port={port}", "-jar", f"{ts_dir}/blazegraph.jar"]
+    )
 
 def get_human_readable_date(date:str) -> str:
     datetime_obj = parser.parse(date).replace(tzinfo=None)
@@ -77,6 +88,11 @@ def get_prov_metadata_by_time(prov_metadata:Dict[str, Dict]) -> Dict[str, Dict]:
             prov_metadata_by_time[entity][time]["hadPrimarySource"] = source
             prov_metadata_by_time[entity][time]["description"] = description
     return prov_metadata_by_time
+
+@app.before_first_request
+def function_to_run_only_once():
+    launch_blazegraph(ts_dir="db", port=9999)
+    launch_blazegraph(ts_dir="db/prov", port=19999)
 
 @app.route("/")
 def home():

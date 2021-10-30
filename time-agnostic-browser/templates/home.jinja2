@@ -38,7 +38,7 @@
                         <div class="tab-content" id="tabcontent2">
                             <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                                 <label for="searchByURI">Enter a URI to begin navigation</label>
-                                <input type="text" class="form-control" id="searchByURI" aria-describedby="searchByURI" value=https://github.com/opencitations/time-agnostic-library/ar/15519> 
+                                <input type="text" class="form-control" id="searchByURI" aria-describedby="searchByURI" value=https://github.com/opencitations/time-agnostic-library/br/86766> 
                                 <button id="exploreSubmit" class="btn btn-outline-primary m-5 align-self-end">
                                     <span class="mr-1"><span class="fas fa-search"></span></span>
                                     Submit the query
@@ -50,16 +50,14 @@
                                         <label for="sparqlEndpoint">Input a SPARQL query</label>
                                         <textarea class="form-control mb-1" id="sparqlEndpoint" rows="12">
     PREFIX literal: &lt;http://www.essepuntato.it/2010/06/literalreification/&gt;
-    PREFIX datacite: &lt;http://purl.org/spar/datacite/&gt;
-    PREFIX pro: &lt;http://purl.org/spar/pro/&gt;
-    PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
-    SELECT DISTINCT ?o ?id ?value
+    PREFIX cito:  &lt;http://purl.org/spar/cito/&gt;
+    PREFIX datacite:  &lt;http://purl.org/spar/datacite/&gt; 
+    SELECT DISTINCT ?br ?id ?value
     WHERE {
-        &lt;https://github.com/opencitations/time-agnostic-library/ar/15519&gt; pro:isHeldBy ?o.
-        OPTIONAL {&lt;https://github.com/opencitations/time-agnostic-library/ar/15519&gt; rdf:type pro:RoleInTime.}
-        ?o datacite:hasIdentifier ?id.
+         &lt;https://github.com/opencitations/time-agnostic-library/br/86766&gt; cito:cites ?br.
+        ?br datacite:hasIdentifier ?id.
         OPTIONAL {?id literal:hasLiteralValue ?value.}
-    }
+    }   
                                         </textarea>
                                         <button id="querySubmit" class="btn btn-outline-primary m-5 align-self-end" @click="submitQuery">
                                             <span class="mr-1"><span class="fas fa-search"></span></span>

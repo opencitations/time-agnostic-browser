@@ -27,7 +27,7 @@
 
 To launch the application, do the following:
   1. Clone the repository.
-  2. Compile the configuration file in [time-agnostic-browser/config_library.json](https://github.com/opencitations/time-agnostic-browser/blob/main/time-agnostic-browser/config_library.json). For more information on how to set it, see [Config library](config-library). 
+  2. Compile the configuration file in [time-agnostic-browser/config_library.json](https://github.com/opencitations/time-agnostic-browser/blob/main/time-agnostic-browser/config_library.json). For more information on how to set it, see [Config library](#config-library). 
   3. From the root directory, run the following terminal command:
   ```bash
     python time-agnostic-browser/app.py
